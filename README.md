@@ -7,7 +7,7 @@ Build a SPA with data from **Unsplash** using [**Unsplash-js**](https://github.c
 
 **Demo:**  [https://unsplash-profile-page.vercel.app/](https://unsplash-profile-page.vercel.app/)
 
-**Autor:**  [@\_nnaro\_](https://twitter.com/_nnaro_)
+**Author:**  [@\_nnaro\_](https://twitter.com/_nnaro_)
 
 ## Requirements
 
