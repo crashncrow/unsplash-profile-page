@@ -7,13 +7,13 @@ Build a SPA with data from **Unsplash** using [**Unsplash-js**](https://github.c
 
 **Demo:**  [https://unsplash-profile-page.vercel.app/](https://unsplash-profile-page.vercel.app/)
 
-**Autor:**  [@_nnaro_]([https://twitter.com/_nnaro_](https://twitter.com/_nnaro_))
+**Autor:**  [@_nnaro_](https://twitter.com/_nnaro_)
 
 ## Requirements
 
-- [NPM]([https://www.npmjs.com/get-npm](https://www.npmjs.com/get-npm))
+- [NPM](https://www.npmjs.com/get-npm)
 
-- [Unsplash Api Key]([https://unsplash.com/developers](https://unsplash.com/developers))
+- [Unsplash Api Key](https://unsplash.com/developers)
 
 ## Local deployment
 
@@ -37,7 +37,7 @@ cd unsplash-profile-page
 
 UNSPLASH_ACCESS_KEY=YOUR_API_KEY
 
-UNSPLASH_USER=UNSPLASH_USERNAME
+UNSPLASH_USER=ANY_UNSPLASH_USERNAME
 
 ```
 
