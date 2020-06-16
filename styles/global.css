@@ -28,3 +28,13 @@ img {
   max-width: 100%;
   display: block;
 }
+
+#credits{
+  text-align: center;
+}
+
+#credits a{
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
