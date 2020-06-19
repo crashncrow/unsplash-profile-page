@@ -27,7 +27,7 @@ export default function Home ({ photos, user, stats, collections }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-    
+
       <Stats stats={stats} />
       
       <Gallery photos={photos} />

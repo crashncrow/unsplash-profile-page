@@ -37,16 +37,14 @@ export default function Layout({children, user, img }) {
             <a className={utilStyles.colorInherit}>{user.name}</a>
           </Link>
         </h2>
-        <p>
-          {user.bio}
-        </p>
-      </header>
-      
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`} key="social_container">
+        
         <Social user={user}/>
-      </section>
+        
+        <p>{user.bio}</p>
+      </header>
 
       <main>{children}</main>
+
       <div id="credits">Made with &hearts; by <a href="https://twitter.com/_nnaro_" target="_blank">@_nnaro_</a></div>
     </div>
   )
