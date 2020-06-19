@@ -3,31 +3,35 @@ import Layout, { siteTitle } from '../components/layout'
 
 // Components
 import Gallery from '../components/Gallery/Gallery'
-
-// Styles
-import utilStyles from '../styles/utils.module.css'
+import Stats from '../components/Stats/Stats'
 
 // Clients
 import unsplashSetup from '../clients/unsplash'
 
 export const getServerSideProps = async () => {
   const {...unsplashClient } = await unsplashSetup()
-  const userPhotos = await unsplashClient.getPhotos()
-  const userInfo   = await unsplashClient.getUser()
+  const userPhotos      = await unsplashClient.getPhotos()
+  const userInfo        = await unsplashClient.getUser()
+  const userStats       = await unsplashClient.getStats()
+  const userCollections = await unsplashClient.getCollections()
 
-  return { props: { photos: userPhotos, user: userInfo } }
+  // console.log(userCollections);
+
+  return { props: { photos: userPhotos, user: userInfo, stats: userStats, collections: userCollections } }
 }
 
-export default function Home ({ photos, user }) {
+export default function Home ({ photos, user, stats, collections }) {
   return (
     <Layout user={user} img={photos[0].urls.regular}>
+      
       <Head>
         <title>{siteTitle}</title>
       </Head>
     
-      <section className={utilStyles.headingPhotos} key="photos_container">
-        <Gallery photos={photos} />
-      </section>
+      <Stats stats={stats} />
+      
+      <Gallery photos={photos} />
+
     </Layout>
   )
 }

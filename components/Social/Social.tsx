@@ -1,10 +1,9 @@
-// import styles from './UImage.module.css'
 import Uicon from '../UIcon/UIcon'
-import utilStyles from '../../styles/utils.module.css'
+import styles from './Social.module.css'
 
 export default function Social({ user }) {
     return (
-        <div className={utilStyles.social_container}>
+        <div className={styles.social_container}>
           {
             user.twitter_username ?
             <Uicon url={ "https://www.twitter.com/" + user.twitter_username } name="twitter" />

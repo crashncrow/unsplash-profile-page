@@ -1,8 +1,9 @@
 import UImage from '../UImage/UImage'
+import styles from './Gallery.module.css'
 
 const Gallery = ({ photos }) => {
     return (
-    <>
+    <section className={styles.gallery_container} key="photos_container">
         {photos.map(({ id, urls, links, alt_description }) => (
             <UImage 
                 id={id} 
@@ -12,7 +13,7 @@ const Gallery = ({ photos }) => {
                 key={id + '_component'}
                 />
         ))}
-    </>
+    </section>
     )
 }
 

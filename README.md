@@ -3,7 +3,7 @@
 
 <a href="https://www.buymeacoffee.com/nnaro" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
   
-Build a SPA with data from **Unsplash** using [**Unsplash-js**](https://github.com/unsplash/unsplash-js) and [**Create next app (Nextjs)**](https://nextjs.org/learn/basics/create-nextjs-app)
+Build a SPA with data from **Unsplash** using [**Unsplash-js**](https://github.com/unsplash/unsplash-js) and [**Nextjs**](https://nextjs.org/)
 
 **Demo:**  [https://unsplash-profile-page.vercel.app/](https://unsplash-profile-page.vercel.app/)
 

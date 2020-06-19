@@ -25,24 +25,6 @@
   line-height: 1.5;
 }
 
-.headingPhotos {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  column-count: 3;
-  column-gap: 20px;
-}
-@media (max-width: 990px) {
-  .headingPhotos {
-    column-count: 2;
-  }
-}
-
-@media (max-width: 790px) {
-  .headingPhotos {
-    column-count: 1;
-  }
-}
-
 .borderCircle {
   border-radius: 9999px;
 }
@@ -69,6 +51,3 @@
   color: #999;
 }
 
-.social_container{
-  height: 60px;
-}

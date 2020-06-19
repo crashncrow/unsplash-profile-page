@@ -21,10 +21,26 @@ const unsplash = async () => {
         return json
       });
 
+    const stats = () =>
+      u.users.statistics(process.env.UNSPLASH_USER, "days", 30)
+      .then(toJson)
+      .then(json => {
+        return json
+      });
+
+    const collection = () =>
+      u.users.collections(process.env.UNSPLASH_USER, 1, 15, "updated")
+      .then(toJson)
+      .then(json => {
+        return json
+      });
+
     const getPhotos = () => photos()
     const getUser = () => user()
+    const getStats = () => stats()
+    const getCollections = () => collection()
 
-    return { getPhotos, getUser }
+    return { getPhotos, getUser, getStats, getCollections }
 }
 
 export default unsplash
