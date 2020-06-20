@@ -1,4 +1,4 @@
-import Uicon from '../UIcon/UIcon'
+import UIcon from '../UIcon/UIcon'
 import styles from './Social.module.css'
 
 export default function Social({ user }) {
@@ -6,18 +6,18 @@ export default function Social({ user }) {
         <div className={styles.social_container}>
           {
             user.twitter_username ?
-            <Uicon url={ "https://www.twitter.com/" + user.twitter_username } name="twitter" />
+            <UIcon url={ "https://www.twitter.com/" + user.twitter_username } name="twitter" />
             :
             ''
           }
           {
             user.instagram_username ?
-            <Uicon url={ "https://www.instagram.com/" + user.instagram_username } name="instagram" />
+            <UIcon url={ "https://www.instagram.com/" + user.instagram_username } name="instagram" />
             :
             ''
           }
           { user.username ?
-            <Uicon url={ "https://www.unsplash.com/@" + user.username } name="unsplash" />
+            <UIcon url={ "https://www.unsplash.com/@" + user.username } name="unsplash" />
             :
             ''
           }

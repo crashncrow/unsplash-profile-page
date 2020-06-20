@@ -17,7 +17,14 @@ export const getServerSideProps = async () => {
 
   // console.log(userCollections);
 
-  return { props: { photos: userPhotos, user: userInfo, stats: userStats, collections: userCollections } }
+  return { 
+    props: { 
+      photos: userPhotos, 
+      user: userInfo, 
+      stats: userStats, 
+      collections: userCollections 
+    } 
+  }
 }
 
 export default function Home ({ photos, user, stats, collections }) {
