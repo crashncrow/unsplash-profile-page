@@ -8,9 +8,9 @@
     bottom: 55px;
     right: 10px;
     width: 100%;
-    height: 50px;
+    height: 12px;
     text-align: right;
-    display: inline-block;
+    float: left;
 }
 
 .actions a{
