@@ -17,8 +17,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const userStats       = await unsplashClient.getStats()
   const userCollections = await unsplashClient.getCollections()
 
-  // console.log(userCollections);
-
   return { 
     props: { 
       photos: userPhotos, 
