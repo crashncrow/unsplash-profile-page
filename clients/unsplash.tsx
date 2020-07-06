@@ -38,10 +38,6 @@ const unsplash = async () => {
       u.collections.getCollection(id)
       .then(toJson)
       .then(json => {
-        console.log(json)
-        // json.map((c)=>(
-        //   c.slug = slug(c.title)
-        // ))
         return json
       });
 

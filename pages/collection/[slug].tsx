@@ -12,15 +12,10 @@ import unsplashSetup from '../../clients/unsplash'
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
-    console.log(query.id)
-    console.log(query.slug)
-
     const {...unsplashClient } = await unsplashSetup()
     const userInfo   = await unsplashClient.getUser()
     const userPhotos = await unsplashClient.getCollectionPhotos(query.id)
     const collection = await unsplashClient.getCollection(query.id)
-  
-    // console.log(slug);
   
     return { 
       props: { 
@@ -32,8 +27,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 }
 
 const Collection = ({ photos, user, collection }) => {
-    const router = useRouter()
-    const { slug } = router.query
   
     return (
         <Layout user={user} img={photos[0].urls.regular}>

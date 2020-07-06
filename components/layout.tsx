@@ -4,7 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import Social from './Social/Social'
 
-export const siteTitle = 'Unsplash Profile Nextjs'
+export const siteTitle = 'Unsplash Profile with Nextjs'
 
 const Layout = ({children, user, img }) => {
   return (
