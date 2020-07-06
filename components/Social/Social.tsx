@@ -1,7 +1,7 @@
 import UIcon from '../UIcon/UIcon'
 import styles from './Social.module.css'
 
-export default function Social({ user }) {
+const Social = ({ user }) => {
     return (
         <div className={styles.social_container}>
           {
@@ -24,3 +24,5 @@ export default function Social({ user }) {
         </div>
     )
 }
+
+export default Social

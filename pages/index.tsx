@@ -1,14 +1,16 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
+import { GetServerSideProps } from 'next'
 
 // Components
 import Gallery from '../components/Gallery/Gallery'
 import Stats from '../components/Stats/Stats'
+import Collections from '../components/Collections/Collections'
 
 // Clients
 import unsplashSetup from '../clients/unsplash'
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const {...unsplashClient } = await unsplashSetup()
   const userPhotos      = await unsplashClient.getPhotos()
   const userInfo        = await unsplashClient.getUser()
@@ -27,7 +29,7 @@ export const getServerSideProps = async () => {
   }
 }
 
-export default function Home ({ photos, user, stats, collections }) {
+const Home = ({ photos, user, stats, collections }) => {
   return (
     <Layout user={user} img={photos[0].urls.regular}>
       
@@ -36,9 +38,13 @@ export default function Home ({ photos, user, stats, collections }) {
       </Head>
 
       <Stats stats={stats} />
-      
+
+      <Collections collections={collections}/>
+
       <Gallery photos={photos} />
 
     </Layout>
   )
 }
+
+export default Home 

@@ -6,7 +6,7 @@ import Social from './Social/Social'
 
 export const siteTitle = 'Unsplash Profile Nextjs'
 
-export default function Layout({children, user, img }) {
+const Layout = ({children, user, img }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -49,3 +49,5 @@ export default function Layout({children, user, img }) {
     </div>
   )
 }
+
+export default Layout
