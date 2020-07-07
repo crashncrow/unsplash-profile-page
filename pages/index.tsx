@@ -11,38 +11,32 @@ import Collections from '../components/Collections/Collections'
 import unsplashSetup from '../clients/unsplash'
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const {...unsplashClient } = await unsplashSetup()
-  const userPhotos      = await unsplashClient.getPhotos()
-  const userInfo        = await unsplashClient.getUser()
-  const userStats       = await unsplashClient.getStats()
-  const userCollections = await unsplashClient.getCollections()
+	const { ...unsplashClient } = await unsplashSetup()
+	const userPhotos = await unsplashClient.getPhotos()
 
-  return { 
-    props: { 
-      photos: userPhotos, 
-      user: userInfo, 
-      stats: userStats, 
-      collections: userCollections 
-    } 
-  }
+	return {
+		props: {
+			photos: userPhotos,
+		}
+	}
 }
 
-const Home = ({ photos, user, stats, collections }) => {
-  return (
-    <Layout user={user} img={photos[0].urls.regular}>
-      
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
+const Home = ({ photos, user }) => {
+	return (
+		<Layout img={photos[0].urls.regular}>
 
-      <Stats stats={stats} />
+			<Head>
+				<title>{siteTitle}</title>
+			</Head>
 
-      <Collections collections={collections}/>
+			<Stats />
 
-      <Gallery photos={photos} />
+			<Collections id="0" />
 
-    </Layout>
-  )
+			<Gallery id_collection="0" />
+
+		</Layout>
+	)
 }
 
 export default Home 

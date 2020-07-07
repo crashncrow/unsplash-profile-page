@@ -1,10 +1,18 @@
+import useSWR from 'swr'
+import fetcher from "../../libs/fetcher"
 import UImage from '../UImage/UImage'
 import styles from './Gallery.module.css'
 
-const Gallery = ({ photos }) => {
+const Gallery = ({ id_collection }) => {
+    const { data, error } = useSWR('/api/photo' + (id_collection > 0 ? `/${id_collection}`: ''), fetcher)
+
+    if (error) return <div>failed to load</div>
+
+    if (!data) return <div>loading...</div>
+
     return (
     <section className={styles.gallery_container} key="photos_container">
-        {photos.map(({ id, urls, links, alt_description }) => (
+        {data.map(({ id, urls, links, alt_description }) => (
             <UImage 
                 id={id} 
                 urls={urls} 

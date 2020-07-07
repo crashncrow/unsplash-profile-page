@@ -12,36 +12,35 @@ import unsplashSetup from '../../clients/unsplash'
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
-    const {...unsplashClient } = await unsplashSetup()
-    const userInfo   = await unsplashClient.getUser()
-    const userPhotos = await unsplashClient.getCollectionPhotos(query.id)
-    const collection = await unsplashClient.getCollection(query.id)
-  
-    return { 
-      props: { 
-        photos: userPhotos, 
-        user: userInfo,
-        collection: collection
-      } 
-    }
+	const { ...unsplashClient } = await unsplashSetup()
+	const userPhotos = await unsplashClient.getCollectionPhotos(query.id)
+	const collection = await unsplashClient.getCollection(query.id)
+
+	return {
+		props: {
+			photos: userPhotos,
+			collection: collection,
+			query: query
+		}
+	}
 }
 
-const Collection = ({ photos, user, collection }) => {
-  
-    return (
-        <Layout user={user} img={photos[0].urls.regular}>
-      
-          <Head>
-              <title>{collection.title}</title>
-          </Head>
+const Collection = ({ query, photos, collection }) => {
 
-          <Collections collections={[collection]} />
+	return (
+		<Layout img={photos[0].urls.regular}>
 
-          <Gallery photos={photos} />
+			<Head>
+				<title>{collection.title}</title>
+			</Head>
 
-        </Layout>
-    )
-    
+			<Collections id={[query.id]} />
+
+			<Gallery id_collection={[query.id]} />
+
+		</Layout>
+	)
+
 }
 
 export default Collection
