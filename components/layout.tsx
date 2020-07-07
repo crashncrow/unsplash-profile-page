@@ -24,7 +24,7 @@ const Layout = ({ children, img }) => {
 
 			<main>{children}</main>
 
-			<div id="credits">Made with &hearts; by <a href="https://twitter.com/_nnaro_" target="_blank">@_nnaro_</a></div>
+			<div id="credits">Made with &hearts; by <a href="https://twitter.com/_nnaro_" target="_blank" rel="noopener">@_nnaro_</a></div>
 		</div>
 	)
 }
