@@ -10,14 +10,12 @@ const Gallery = ({ id_collection }) => {
 
     if (!data) return <div>loading...</div>
 
-    console.log(data)
     return (
     <section className={styles.gallery_container} key="photos_container">
         {data.map(({ id, urls, links, alt_description, description }) => (
             <UImage 
                 id={id} 
                 urls={urls} 
-                links={links} 
                 alt_description={alt_description ? alt_description : description} 
                 key={id + '_component'}
                 />

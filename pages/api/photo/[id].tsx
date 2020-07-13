@@ -23,8 +23,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 resolve()
             })
             .catch(error => {
-                res.json(error);
-                res.status(405).end();
+                res.json(error)
+                res.status(405).end()
                 resolve()
             })
     })

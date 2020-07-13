@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 	}
 }
 
-const Home = ({ photos, user }) => {
+const Home = ({ photos }) => {
 	return (
 		<Layout img={photos[0].urls.regular}>
 

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import User from './User/User'
 
 export const siteTitle = 'Unsplash Profile with Nextjs'

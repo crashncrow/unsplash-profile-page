@@ -11,28 +11,50 @@ const Collections = () => {
 
     if (error) return <div>failed to load</div>
 
-    if (!data) return <div>loading...</div>
-
     return (
         <header className={styles.header}>
             <Link href="/">
-            <a>
-                <img
-                src={data.profile_image.large}
-                className={`${styles.headerImage} ${styles.borderCircle}`}
-                alt={data.name}
-                />
-            </a>
+                <a>{
+                    data ?
+                        <img
+                            src={data.profile_image.large}
+                            className={`${styles.headerImage} ${styles.borderCircle}`}
+                            alt={data.name}
+                        />
+                        :
+                        ''
+                }
+                </a>
             </Link>
             <h2 className={utilStyles.headingLg}>
-            <Link href="/">
-                <a className={utilStyles.colorInherit}>{data.name}</a>
-            </Link>
+                <Link href="/">
+                    <a className={utilStyles.colorInherit}>
+                        {
+                            data ?
+                                data.name
+                                :
+                                ''
+                        }
+                    </a>
+                </Link>
             </h2>
-            
-            <Social user={data}/>
-            
-            <p>{data.bio}</p>
+
+            {
+                data ?
+                    <Social user={data} />
+                    :
+                    ''
+            }
+
+            <p>
+                {
+                    data ?
+                        data.bio
+                        :
+                        ''
+                }
+            </p>
+
         </header>
     )
 }
