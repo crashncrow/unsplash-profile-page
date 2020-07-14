@@ -3,8 +3,12 @@ import fetcher from "../../libs/fetcher"
 import Link from 'next/link'
 import styles from './Collections.module.css'
 
-const Collections = ({ id }) => {
-    const { data, error } = useSWR('/api/collection' + (id > 0 ? `/${id}` : ''), fetcher)
+interface CollectionProps {
+    id?: number
+}
+
+const Collections  = ({ id } : CollectionProps ) => {
+    const { data, error } = useSWR('/api/collection' + (id ? `/${id}` : ''), fetcher)
 
     if (error) return <div>failed to load</div>
 
@@ -29,7 +33,6 @@ const Collections = ({ id }) => {
                     </Link>
 
                     :
-
                     <Link
                         href="/collection/[slug]"
                         as={`/collection/${col.slug}?id=${col.id}`}

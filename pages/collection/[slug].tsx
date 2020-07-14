@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import Layout, { siteTitle } from '../../components/layout'
 import { GetServerSideProps } from 'next'
 
@@ -7,40 +6,32 @@ import { GetServerSideProps } from 'next'
 import Gallery from '../../components/Gallery/Gallery'
 import Collections from '../../components/Collections/Collections'
 
-// Clients
-import unsplashSetup from '../../clients/unsplash'
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
-	const { ...unsplashClient } = await unsplashSetup()
-	const userPhotos = await unsplashClient.getCollectionPhotos(query.id)
-	const collection = await unsplashClient.getCollection(query.id)
-
 	return {
 		props: {
-			photos: userPhotos,
-			collection: collection,
 			query: query
 		}
 	}
 }
 
-const Collection = ({ query, photos, collection }) => {
-
+const Collection = ({ query }) => {
+	
 	return (
-		<Layout img={photos[0].urls.regular}>
+		<Layout>
 
 			<Head>
-				<title>{collection.title}</title>
+				<title>{query.slug.replace(/\-+/g, ' ')} - {siteTitle}</title>
 			</Head>
 
-			<Collections id={[query.id]} />
+			<Collections id={query.id} />
 
-			<Gallery id_collection={[query.id]} />
+			<Gallery id_collection={query.id} />
 
 		</Layout>
 	)
-
 }
+
 
 export default Collection

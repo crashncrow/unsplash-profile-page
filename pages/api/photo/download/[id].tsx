@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Unsplash, { toJson } from "unsplash-js"
+import request from "request";
 import fetch from 'node-fetch'
 global.fetch = fetch
-
-const request = require("request");
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
     const {
@@ -12,7 +11,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
     const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 
-    return u.photos.getPhoto(id)
+    return u.photos.getPhoto(id.toString())
         .then(toJson)
         .then(json => {
             u.photos.downloadPhoto(json)
@@ -31,7 +30,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
                 .get(filePath) // download original image
                 .on("error", function (err) {
                     res.writeHead(404, { "Content-Type": "text/html" })
-                    res.write("<h1>404 not found</h1>")
+                    res.write(err)
                     res.end()
                     return
                 })

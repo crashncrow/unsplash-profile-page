@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         u.users.photos(process.env.UNSPLASH_USER, 1, 50, "latest")
             .then(toJson)
-            .then(json => {
+            .then((json: string) => {
 
                 res.statusCode = 200
                 res.setHeader('Content-Type', 'application/json');

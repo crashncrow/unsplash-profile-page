@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Unsplash, { toJson } from "unsplash-js"
-import slug from '../../../libs/slug'
+
 import fetch from 'node-fetch'
 global.fetch = fetch
 
