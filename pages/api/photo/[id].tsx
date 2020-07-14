@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 
-        u.collections.getCollectionPhotos(id)
+        u.collections.getCollectionPhotos(parseInt(id.toString()))
             .then(toJson)
             .then(json => {
                 res.statusCode = 200
