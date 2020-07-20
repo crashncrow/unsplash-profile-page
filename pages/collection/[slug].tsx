@@ -6,7 +6,6 @@ import { GetServerSideProps } from 'next'
 import Gallery from '../../components/Gallery/Gallery'
 import Collections from '../../components/Collections/Collections'
 
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 	return {
@@ -32,6 +31,5 @@ const Collection = ({ query }) => {
 		</Layout>
 	)
 }
-
 
 export default Collection

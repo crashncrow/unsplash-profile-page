@@ -14,7 +14,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@types/node": "^14.0.14",
+    "@types/node": "^14.0.23",
     "@types/request": "^2.48.5",
     "@types/unsplash-js": "^6.0.1",
     "isomorphic-unfetch": "^3.0.0",
@@ -25,8 +25,8 @@
     "unsplash-js": "^6.0.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.41",
+    "@types/react": "^16.9.43",
     "request": "^2.88.2",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.7"
   }
 }

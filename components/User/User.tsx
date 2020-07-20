@@ -6,7 +6,7 @@ import Social from '../Social/Social'
 import styles from './User.module.css'
 import utilStyles from '../../styles/utils.module.css'
 
-const Collections = () => {
+const User = () => {
     const { data, error } = useSWR('/api/user', fetcher)
 
     if (error) return <div>failed to load</div>
@@ -59,4 +59,4 @@ const Collections = () => {
     )
 }
 
-export default Collections
+export default User

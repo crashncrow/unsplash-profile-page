@@ -27,7 +27,7 @@ const Collections  = ({ id } : CollectionProps ) => {
                             {col.title}
 
                             <Link href="/">
-                                <button type="button" className={styles.chip_remove}></button>
+                                <button type="button" className={styles.chip_remove} aria-label="Return to home"></button>
                             </Link>
                         </a>
                     </Link>
