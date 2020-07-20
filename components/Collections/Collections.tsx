@@ -4,11 +4,11 @@ import Link from 'next/link'
 import styles from './Collections.module.css'
 
 interface CollectionProps {
-    id?: number
+    id_collection?: number
 }
 
-const Collections  = ({ id } : CollectionProps ) => {
-    const { data, error } = useSWR('/api/collection' + (id ? `/${id}` : ''), fetcher)
+const Collections  = ({ id_collection } : CollectionProps ) => {
+    const { data, error } = useSWR('/api/collection' + (id_collection ? `/${id_collection}` : ''), fetcher)
 
     if (error) return <div>failed to load</div>
 
@@ -16,15 +16,16 @@ const Collections  = ({ id } : CollectionProps ) => {
 
     return (
         <div className={styles.chips}>
-            {data.map((col) => (
 
-                (id > 1) ?
+            {data.map(({id, title, slug}) => (
+
+                (id_collection) ?
 
                     <Link
                         href="/"
-                        key={`collection_${col.slug}`}>
+                        key={`collection_${slug}`}>
                         <a className={styles.chip}>
-                            {col.title}
+                            {title}
 
                             <Link href="/">
                                 <button type="button" className={styles.chip_remove} aria-label="Return to home"></button>
@@ -33,13 +34,14 @@ const Collections  = ({ id } : CollectionProps ) => {
                     </Link>
 
                     :
+
                     <Link
                         href="/collection/[slug]"
-                        as={`/collection/${col.slug}?id=${col.id}`}
-                        key={`collection_${col.slug}`}>
+                        as={`/collection/${slug}?id=${id}`}
+                        key={`collection_${slug}`}>
 
                         <a className={styles.chip}>
-                            {col.title}
+                            {title}
                         </a>
                     </Link>
 

@@ -29,31 +29,14 @@ const User = () => {
             <h2 className={utilStyles.headingLg}>
                 <Link href="/">
                     <a className={utilStyles.colorInherit}>
-                        {
-                            data ?
-                                data.name
-                                :
-                                ''
-                        }
+                        {data ? data.name : ''}
                     </a>
                 </Link>
             </h2>
 
-            {
-                data ?
-                    <Social user={data} />
-                    :
-                    ''
-            }
+            {data ? <Social user={data} /> : ''}
 
-            <p>
-                {
-                    data ?
-                        data.bio
-                        :
-                        ''
-                }
-            </p>
+            <p> {data ? data.bio : ''} </p>
 
         </header>
     )

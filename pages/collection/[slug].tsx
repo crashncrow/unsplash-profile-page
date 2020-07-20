@@ -24,7 +24,7 @@ const Collection = ({ query }) => {
 				<title>{query.slug.replace(/\-+/g, ' ')} - {siteTitle}</title>
 			</Head>
 
-			<Collections id={query.id} />
+			<Collections id_collection={query.id} />
 
 			<Gallery id_collection={query.id} />
 
