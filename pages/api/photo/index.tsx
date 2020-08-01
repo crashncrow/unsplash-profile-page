@@ -5,24 +5,24 @@ import fetch from 'node-fetch'
 global.fetch = fetch
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
 
-        const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
+    const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 
-        u.users.photos(process.env.UNSPLASH_USER, 1, 50, "latest")
-            .then(toJson)
-            .then((json: string) => {
+    u.users.photos(process.env.UNSPLASH_USER, 1, 50, "latest")
+      .then(toJson)
+      .then((json: string) => {
 
-                res.statusCode = 200
-                res.setHeader('Content-Type', 'application/json');
-                res.setHeader('Cache-Control', 'max-age=180000');
-                res.end(JSON.stringify(json))
-                resolve()
-            })
-            .catch(error => {
-                res.json(error);
-                res.status(405).end();
-                resolve()
-            })
-    })
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Cache-Control', 'max-age=180000');
+        res.end(JSON.stringify(json))
+        resolve()
+      })
+      .catch(error => {
+        res.json(error);
+        res.status(405).end();
+        resolve()
+      })
+  })
 }

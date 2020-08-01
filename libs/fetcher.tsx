@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-unfetch'
 
-export default async function <JSON = any>(
-	input: RequestInfo,
-	init?: RequestInit
+export default async function f<JSON = any> (
+  input: RequestInfo,
+  init?: RequestInit
 ): Promise<JSON> {
-	const res = await fetch(input, init)
-	return res.json()
+  const res = await fetch(input, init)
+  return res.json()
 }

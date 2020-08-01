@@ -7,21 +7,21 @@ import Stats from '../components/Stats/Stats'
 import Collections from '../components/Collections/Collections'
 
 const Home = () => {
-	return (
-		<Layout>
+  return (
+    <Layout>
 
-			<Head>
-				<title>{siteTitle}</title>
-			</Head>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
 
-			<Stats />
+      <Stats />
 
-			<Collections />
+      <Collections />
 
-			<Gallery />
+      <Gallery />
 
-		</Layout>
-	)
+    </Layout>
+  )
 }
 
-export default Home 
+export default Home

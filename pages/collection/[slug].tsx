@@ -8,28 +8,28 @@ import Collections from '../../components/Collections/Collections'
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
-	return {
-		props: {
-			query: query
-		}
-	}
+  return {
+    props: {
+      query: query
+    }
+  }
 }
 
 const Collection = ({ query }) => {
-	
-	return (
-		<Layout>
 
-			<Head>
-				<title>{query.slug.replace(/\-+/g, ' ')} - {siteTitle}</title>
-			</Head>
+  return (
+    <Layout>
 
-			<Collections id_collection={query.id} />
+      <Head>
+        <title>{query.slug.replace(/\-+/g, ' ')} - {siteTitle}</title>
+      </Head>
 
-			<Gallery id_collection={query.id} />
+      <Collections id_collection={query.id} />
 
-		</Layout>
-	)
+      <Gallery id_collection={query.id} />
+
+    </Layout>
+  )
 }
 
 export default Collection
