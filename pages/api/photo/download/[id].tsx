@@ -36,7 +36,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         })
         .pipe(res); // pipe converted image to HTTP response
 
-      res.status(200).end()
+      // res.status(200).end()
     })
     .catch(error => {
       res.json(error)
