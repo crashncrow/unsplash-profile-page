@@ -1,6 +1,6 @@
 {
   "name": "unsplash-profile-page",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Diego Gennaro <gennaro.diego@gmail.com>",
   "description": "Build a SPA with data from Unsplash using Nextjs and Unsplash-js",
