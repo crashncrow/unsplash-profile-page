@@ -1,29 +1,23 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from 'components/Layout'
-import { GetServerSideProps } from 'next'
 import Gallery from 'components/Gallery'
 import Collections from 'components/Collections'
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  return {
-    props: {
-      query: query
-    }
-  }
-}
+import { useRouter } from 'next/router'
 
 const Collection = ({ query }) => {
-
+  const router = useRouter()
+  const slug = router.query.slug.toString().replace(/\-+/g, ' ')
+  const collection_id = parseInt(router.query.id.toString())
   return (
     <Layout>
 
       <Head>
-        <title>{query.slug.replace(/\-+/g, ' ')} - {siteTitle}</title>
+        <title>{slug} - {siteTitle}</title>
       </Head>
 
-      <Collections id_collection={query.id} />
+      <Collections id_collection={collection_id} />
 
-      <Gallery id_collection={query.id} />
+      <Gallery id_collection={collection_id} />
 
     </Layout>
   )
