@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Unsplash, { toJson } from "unsplash-js"
-import slug from '../../../libs/slug'
+import slug from 'libs/slug'
 
 import fetch from 'node-fetch'
 global.fetch = fetch
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
 
     const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 

@@ -16,27 +16,20 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     .then(json => {
       u.photos.downloadPhoto(json)
 
-      // path to file
       const filePath = json.links.download;
-
-      // filename only
       const fileName = id + ".jpg";
 
-      // set header
       res.setHeader("content-disposition", "attachment; filename=" + fileName);
 
-      // send request to the original file
       request
-        .get(filePath) // download original image
+        .get(filePath)
         .on("error", function (err) {
           res.writeHead(404, { "Content-Type": "text/html" })
           res.write(err)
           res.end()
           return
         })
-        .pipe(res); // pipe converted image to HTTP response
-
-      // res.status(200).end()
+        .pipe(res)
     })
     .catch(error => {
       res.json(error)

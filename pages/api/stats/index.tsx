@@ -11,7 +11,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     u.users.statistics(process.env.UNSPLASH_USER, "days", 30)
       .then(toJson)
       .then(json => {
-
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json');
         res.setHeader('Cache-Control', 'max-age=180000');

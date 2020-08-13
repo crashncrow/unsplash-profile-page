@@ -1,7 +1,7 @@
 import useSWR from 'swr'
-import fetcher from "../../libs/fetcher"
-import UImage from '../UImage/UImage'
+import fetcher from "libs/fetcher"
 import styles from './Gallery.module.css'
+import UImage from 'components/UImage'
 
 interface GalleryProps {
   id_collection?: string
@@ -15,13 +15,13 @@ const Gallery = ({ id_collection }: GalleryProps) => {
   if (!data) return <div>loading...</div>
 
   return (
-    <section className={styles.gallery_container} key="photos_container">
+    <section className={styles.gallery_container}>
       {data.map(({ id, urls, alt_description, description }) => (
         <UImage
           id={id}
           urls={urls}
           altDescription={alt_description ? alt_description : description}
-          key={id + '_component'}
+          key={`${id}_uimage_component`}
         />
       ))}
     </section>

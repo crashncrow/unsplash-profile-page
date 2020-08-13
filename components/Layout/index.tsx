@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import User from './User/User'
+import User from 'components/User'
 
 import styles from './layout.module.css'
 
@@ -15,9 +15,6 @@ const Layout = ({ children }) => {
         <meta name='og:title' content={siteTitle} />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='robots' content='noindex' />
-
-        {/* PINTEREST */}
-        <script async defer data-pin-hover='true' data-pin-tall='true' src='//assets.pinterest.com/js/pinit.js' />
       </Head>
 
       <User />

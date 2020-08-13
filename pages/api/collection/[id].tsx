@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     query: { id },
   } = req
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
 
     const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 

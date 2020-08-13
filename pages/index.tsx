@@ -1,10 +1,8 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-
-// Components
-import Gallery from '../components/Gallery/Gallery'
-import Stats from '../components/Stats/Stats'
-import Collections from '../components/Collections/Collections'
+import Layout, { siteTitle } from 'components/Layout'
+import Gallery from 'components/Gallery'
+import Stats from 'components/Stats'
+import Collections from 'components/Collections'
 
 const Home = () => {
   return (
