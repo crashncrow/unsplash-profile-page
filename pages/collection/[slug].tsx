@@ -6,13 +6,12 @@ import { useRouter } from 'next/router'
 
 const Collection = ({ query }) => {
   const router = useRouter()
-  const slug = router.query.slug.toString().replace(/\-+/g, ' ')
-  const collection_id = parseInt(router.query.id.toString())
+  const collection_id = router.query.id ? parseInt(router.query.id.toString()) : null
   return (
     <Layout>
 
       <Head>
-        <title>{slug} - {siteTitle}</title>
+        <title>{siteTitle}</title>
       </Head>
 
       <Collections id_collection={collection_id} />
