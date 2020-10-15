@@ -4,12 +4,13 @@ import Gallery from 'components/Gallery'
 import Collections from 'components/Collections'
 import { useRouter } from 'next/router'
 
-const Collection = ({ query }) => {
+const Collection = () => {
   const router = useRouter()
-  const collection_id = router.query.id ? parseInt(router.query.id.toString()) : null
+  const collection_id = router.query.id
+    ? parseInt(router.query.id.toString())
+    : null
   return (
     <Layout>
-
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -17,7 +18,6 @@ const Collection = ({ query }) => {
       <Collections id_collection={collection_id} />
 
       <Gallery id_collection={collection_id} />
-
     </Layout>
   )
 }
