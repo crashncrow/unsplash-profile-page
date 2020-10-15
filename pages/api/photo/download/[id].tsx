@@ -15,7 +15,7 @@ export default function download(req: NextApiRequest, res: NextApiResponse) {
       .getPhoto(id.toString())
       .then(toJson)
       .then((json) => {
-        u.photos.downloadPhoto(json)
+        u.photos.trackDownload(json)
 
         const filePath = json.links.download
         const fileName = id + '.jpg'
