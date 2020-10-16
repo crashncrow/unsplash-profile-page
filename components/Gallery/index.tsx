@@ -9,8 +9,8 @@ const Gallery = ({ data }) => {
       {data.data.map(({ id, urls, alt_description, description, blur_hash, height, width }) => (
         <UImage
           id={id}
-          height={height * 340 / width} 
-          width={"340"} 
+          height={height * 790 / width} 
+          width={"790"} 
           urls={urls}
           blurHash={blur_hash}
           altDescription={alt_description ? alt_description : description}

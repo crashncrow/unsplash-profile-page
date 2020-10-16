@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "author": "Diego Gennaro <gennaro.diego@gmail.com>",
-  "description": "Build a SPA with data from Unsplash using Nextjs and Unsplash-js",
+  "description": "Using Next.js with Unsplash API",
   "repository": {
     "type": "git",
     "url": "https://github.com/crashncrow/unsplash-profile-page.git"
@@ -14,7 +14,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "blurhash": "^1.1.3",
     "next": "^9.5.5",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
