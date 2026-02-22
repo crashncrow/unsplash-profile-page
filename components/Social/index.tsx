@@ -6,8 +6,8 @@ const Social = ({ user }) => {
     <div className={styles.social_container}>
       {user.twitter_username && (
         <UIcon
-          url={'https://www.twitter.com/' + user.twitter_username}
-          name="twitter"
+          url={'https://x.com/' + user.twitter_username}
+          name="x"
         />
       )}
       {user.instagram_username && (
