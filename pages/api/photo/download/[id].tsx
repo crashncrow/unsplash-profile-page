@@ -1,19 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import Unsplash, { toJson } from 'unsplash-js'
+import { trackUnsplashDownload, unsplashJson } from 'libs/unsplash'
 
 export default function download(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id },
   } = req
 
-  const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
-
   return new Promise<void>((resolve) => {
-    u.photos
-      .getPhoto(id.toString())
-      .then(toJson)
+    unsplashJson(`/photos/${id.toString()}`)
       .then((json) => {
-        u.photos.trackDownload(json)
+        trackUnsplashDownload(json?.links?.download_location)
 
         const filePath = json.links.download
         const fileName = id + '.jpg'

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import Unsplash, { toJson } from 'unsplash-js'
+import { sendCachedJson, unsplashJson } from 'libs/unsplash'
 
 export default function getCollectionPhotos(
   req: NextApiRequest,
@@ -9,23 +9,7 @@ export default function getCollectionPhotos(
     query: { id },
   } = req
 
-  return new Promise<void>((resolve) => {
-    const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
-
-    u.collections
-      .getCollectionPhotos(parseInt(id.toString()))
-      .then(toJson)
-      .then((json) => {
-        res.statusCode = 200
-        res.setHeader('Content-Type', 'application/json')
-        res.setHeader('Cache-Control', 'max-age=180000')
-        res.end(JSON.stringify(json))
-        resolve()
-      })
-      .catch((error) => {
-        res.json(error)
-        res.status(405).end()
-        resolve()
-      })
-  })
+  return unsplashJson(`/collections/${id.toString()}/photos`)
+    .then((json) => sendCachedJson(res, json))
+    .catch((error) => res.status(405).json(error))
 }
