@@ -1,8 +1,13 @@
 .icon {
-  padding: 20px;
-  float: left;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 0;
 }
 
 .icon_svg {
   width: 20px;
+  height: 20px;
+  display: block;
 }

@@ -6,7 +6,7 @@ import { BlurImg } from 'components/BlurImg'
 
 const Uimage = ({ id, urls, altDescription, blurHash, height, width }) => {
   return (
-    <div>
+    <div className={styles.card}>
       <BlurImg
           loading = {"lazy"}
           blurhash={blurHash}

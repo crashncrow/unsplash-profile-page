@@ -1,18 +1,22 @@
 .gallery_container {
+  --gallery-gap: 16px;
   font-size: 1.2rem;
   line-height: 1.5;
   column-count: 3;
-  column-gap: 20px;
+  column-gap: var(--gallery-gap);
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 990px) {
   .gallery_container {
+    --gallery-gap: 14px;
     column-count: 2;
   }
 }
 
 @media (max-width: 790px) {
   .gallery_container {
+    --gallery-gap: 0px;
     column-count: 1;
   }
 }
