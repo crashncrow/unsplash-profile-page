@@ -7,6 +7,11 @@ interface StatsData {
   views: { total: number }
 }
 
+const compactNumber = new Intl.NumberFormat('en-US', {
+  notation: 'compact',
+  maximumFractionDigits: 1,
+})
+
 const Stats = () => {
   const { data, error } = useSWR<StatsData>('/api/stats', fetcher)
 
@@ -15,8 +20,9 @@ const Stats = () => {
   return (
     <div className={styles.stats_container}>
       <strong>Stats </strong>
-      downloads: {data ? data.downloads.total : '...'} | 
-      views:{' '}{data ? data.views.total : '...'} 
+      downloads: {data ? compactNumber.format(data.downloads.total) : '...'} | 
+      views:{' '}
+      {data ? compactNumber.format(data.views.total) : '...'} 
     </div>
   )
 }
