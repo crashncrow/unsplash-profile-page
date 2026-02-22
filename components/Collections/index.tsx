@@ -7,8 +7,14 @@ interface CollectionProps {
   id_collection?: number
 }
 
+interface CollectionItem {
+  id: number
+  title: string
+  slug: string
+}
+
 const Collections = ({ id_collection }: CollectionProps) => {
-  const { data, error } = useSWR(
+  const { data, error } = useSWR<CollectionItem[]>(
     '/api/collection' + (id_collection ? `/${id_collection}` : ''),
     fetcher
   )

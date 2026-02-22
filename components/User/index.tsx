@@ -4,8 +4,16 @@ import Link from 'next/link'
 import styles from './User.module.css'
 import Social from 'components/Social'
 
+interface UserData {
+  name: string
+  bio?: string
+  profile_image: {
+    large: string
+  }
+}
+
 const User = () => {
-  const { data, error } = useSWR('/api/user', fetcher)
+  const { data, error } = useSWR<UserData>('/api/user', fetcher)
 
   if (error) return <div>failed to load</div>
 
