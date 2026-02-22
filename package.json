@@ -26,9 +26,7 @@
     "@types/node": "^18.19.76",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
-    "@types/request": "^2.48.5",
     "@types/unsplash-js": "^6.3.1",
-    "request": "^2.88.2",
     "typescript": "^5.7.3"
   }
 }
