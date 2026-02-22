@@ -23,7 +23,7 @@ export async function getStaticProps() {
   }
 }
 
-const Home = (data) => {
+const Home = ({ data }) => {
   return (
     <Layout>
       <Head>

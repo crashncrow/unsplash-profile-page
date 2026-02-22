@@ -2,11 +2,13 @@ import styles from './Social.module.css'
 import UIcon from 'components/UIcon'
 
 const Social = ({ user }) => {
+  const xUsername = user.twitter_username
+
   return (
     <div className={styles.social_container}>
-      {user.twitter_username && (
+      {xUsername && (
         <UIcon
-          url={'https://x.com/' + user.twitter_username}
+          url={'https://x.com/' + xUsername}
           name="x"
         />
       )}

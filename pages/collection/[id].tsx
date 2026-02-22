@@ -42,7 +42,7 @@ export async function getStaticProps( {params} ) {
   }
 }
 
-const Collection = (data) => {
+const Collection = ({ data }) => {
   const router = useRouter()
   const collection_id = router.query.id
     ? parseInt(router.query.id.toString())
