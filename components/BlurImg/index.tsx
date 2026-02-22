@@ -15,7 +15,7 @@ export function BlurImg(allProps: Props) {
   const { loading = "lazy", blurhash, style, ...props } = allProps;
   
   const [imgLoaded, setImgLoaded] = useState(false);
-  const [ref, inView] = useInView({ rootMargin: "110%" });
+  const { ref, inView } = useInView({ rootMargin: "110%" });
   const blurUrl = useBlurhash(!imgLoaded && inView ? blurhash : null);
   
   const handleOnLoad = useCallback(() => {
