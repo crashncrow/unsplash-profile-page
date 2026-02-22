@@ -1,9 +1,11 @@
 .card {
   position: relative;
-  display: inline-block;
+  display: grid;
   width: 100%;
   margin: 0 0 var(--gallery-gap, 16px);
   break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .img {
@@ -16,8 +18,8 @@
 .actions {
   position: absolute;
   z-index: 1;
-  right: 10px;
-  bottom: 10px;
+  right: 12px;
+  bottom: 12px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -28,7 +30,9 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 8px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
