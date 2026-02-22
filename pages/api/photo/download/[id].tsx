@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Unsplash, { toJson } from 'unsplash-js'
-import fetch from 'node-fetch'
-global.fetch = fetch
 
 export default function download(req: NextApiRequest, res: NextApiResponse) {
   const {
@@ -10,7 +8,7 @@ export default function download(req: NextApiRequest, res: NextApiResponse) {
 
   const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     u.photos
       .getPhoto(id.toString())
       .then(toJson)
@@ -23,7 +21,7 @@ export default function download(req: NextApiRequest, res: NextApiResponse) {
         res.setHeader('content-disposition', 'attachment; filename=' + fileName)
 
         fetch(filePath)
-          .then((r) => r.buffer())
+          .then(async (r) => Buffer.from(await r.arrayBuffer()))
           .then((buff) => {
             res.end(buff)
             resolve()

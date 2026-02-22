@@ -6,7 +6,7 @@ export default function getCollections(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     const u = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 
     u.users
