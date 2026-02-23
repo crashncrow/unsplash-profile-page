@@ -1,7 +1,5 @@
 
 # Using Next.js with Unsplash API
-
-<a href="https://www.buymeacoffee.com/nnaro" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
   
 This is an example of how [Unsplash](https://unsplash.com/) can be used with `Next.js`
 
@@ -94,5 +92,3 @@ Alternatively, you can deploy using our template by clicking on the Deploy butto
 
 
 That's it. Enjoy!
-
-<a href="https://www.buymeacoffee.com/nnaro" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
