@@ -16,7 +16,7 @@
 
 @media (max-width: 790px) {
   .gallery_container {
-    --gallery-gap: 0px;
+    --gallery-gap: 12px;
     column-count: 1;
   }
 }
