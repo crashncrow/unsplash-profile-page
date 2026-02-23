@@ -25,6 +25,9 @@ const User = () => {
             src={data.profile_image.large}
             className={`${styles.headerImage} ${styles.borderCircle}`}
             alt={data.name}
+            width={96}
+            height={96}
+            decoding="async"
           />
         )}
       </Link>

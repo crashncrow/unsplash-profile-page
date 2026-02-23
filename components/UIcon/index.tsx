@@ -7,11 +7,15 @@ const UIcon = ({ url, name }) => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={name}
     >
       <img
         className={styles.icon_svg}
         src={`/images/${name}.svg`}
-        alt={`${name} icon`}
+        alt=""
+        width={20}
+        height={20}
+        decoding="async"
       />
     </a>
   )

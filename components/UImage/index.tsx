@@ -14,7 +14,7 @@ const Uimage = ({ id, urls, altDescription, blurHash, height, width }) => {
           height={height}
           className={styles.img} 
           src={urls.small} 
-          alt={altDescription}
+          alt={altDescription || ''}
         />
       <div className={styles.actions}>
         <UIcon url={`/api/photo/download/${id}`} name="download" />

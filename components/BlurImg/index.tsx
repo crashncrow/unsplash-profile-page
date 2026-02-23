@@ -12,15 +12,16 @@ type Props = React.DetailedHTMLProps<
 // Only renders the blurhash when the image hasn't loaded yet.
 // Removes the blob once the image has finished loading.
 export function BlurImg(allProps: Props) {
-  const { loading = "lazy", blurhash, style, ...props } = allProps;
+  const { loading = "lazy", blurhash, style, onLoad, ...props } = allProps;
   
   const [imgLoaded, setImgLoaded] = useState(false);
   const { ref, inView } = useInView({ rootMargin: "110%" });
   const blurUrl = useBlurhash(!imgLoaded && inView ? blurhash : null);
   
-  const handleOnLoad = useCallback(() => {
+  const handleOnLoad = useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
     setImgLoaded(true);
-  }, []);
+    onLoad?.(event);
+  }, [onLoad]);
 
   const newStyle = blurUrl
     ? {
@@ -38,6 +39,7 @@ export function BlurImg(allProps: Props) {
       ref={ref}
       {...props}
       loading={loading}
+      decoding="async"
       onLoad={handleOnLoad}
       style={newStyle}
     />
