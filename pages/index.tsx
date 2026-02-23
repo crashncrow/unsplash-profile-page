@@ -3,15 +3,12 @@ import Layout, { siteTitle } from 'components/Layout'
 import Gallery from 'components/Gallery'
 import Stats from 'components/Stats'
 import Collections from 'components/Collections'
+import { getUnsplashUser, unsplashJson } from 'libs/unsplash'
 
 export async function getStaticProps() {
-  
-  const res = await fetch(`${process.env.NEXT_API_URL}/api/photo`)
-  const json = await res.json()
-  if (res.status !== 200) {
-    console.error(json)
-    throw new Error('Failed to fetch API')
-  }
+  const json = await unsplashJson(
+    `/users/${getUnsplashUser()}/photos?page=1&per_page=50&order_by=latest`
+  )
 
   const data = JSON.parse(JSON.stringify(json))
 

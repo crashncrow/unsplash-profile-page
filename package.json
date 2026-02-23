@@ -18,16 +18,16 @@
   },
   "dependencies": {
     "blurhash": "^2.0.5",
-    "next": "^14.2.24",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-intersection-observer": "^9",
     "swr": "^2.3.3"
   },
   "devDependencies": {
     "@types/node": "^18.19.76",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "typescript": "^5.7.3"
   }
 }

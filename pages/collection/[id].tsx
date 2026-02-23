@@ -4,13 +4,20 @@ import Layout, { siteTitle } from 'components/Layout'
 import Gallery from 'components/Gallery'
 import Collections from 'components/Collections'
 import { useRouter } from 'next/router'
+import slug from 'libs/slug'
+import { getUnsplashUser, unsplashJson } from 'libs/unsplash'
 
 // This function gets called at build time
 export async function getStaticPaths() {
-  
-  // Call an external API endpoint to get collections
-  const res = await fetch(`${process.env.NEXT_API_URL}/api/collection`)
-  const collections = await res.json()
+  const collections = await unsplashJson(
+    `/users/${getUnsplashUser()}/collections?page=1&per_page=15&order_by=updated`
+  )
+
+  if (Array.isArray(collections)) {
+    collections.forEach((c) => {
+      if (c?.title) c.slug = slug(c.title)
+    })
+  }
 
   // Get the paths we want to pre-render based on collections
   const paths = collections.map((col) => ({
@@ -23,14 +30,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps( {params} ) {
-  
-  const res = await fetch(`${process.env.NEXT_API_URL}/api/photo/${params.id}`)
-
-  const json = await res.json()
-  if (res.status !== 200) {
-    console.error(json)
-    throw new Error('Failed to fetch API')
-  }
+  const json = await unsplashJson(`/collections/${params.id}/photos`)
 
   const data = JSON.parse(JSON.stringify(json))
 
