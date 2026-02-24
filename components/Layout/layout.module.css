@@ -4,15 +4,6 @@
   margin: 3rem auto 6rem;
 }
 
-.headerHomeImage {
-  width: 8rem;
-  height: 8rem;
-}
-
-.backToHome {
-  margin: 3rem 0 0;
-}
-
 @media (max-width: 790px) {
   .container {
     margin: 1.5rem auto 3rem;

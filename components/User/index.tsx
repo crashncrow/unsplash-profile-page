@@ -14,7 +14,6 @@ interface UserData {
 
 const User = () => {
   const { data, error } = useSWR<UserData>('/api/user', fetcher)
-  const isLoading = !data && !error
 
   return (
     <header className={styles.header}>

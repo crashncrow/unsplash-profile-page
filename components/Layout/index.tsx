@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import User from 'components/User'
+import Credits from 'components/Credits'
 
 import styles from './layout.module.css'
 
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
 
       <main>{children}</main>
 
-      <div id='credits'>Made with &hearts; by <a href='https://x.com/_nnaro_' target='_blank' rel='noopener noreferrer'>@_nnaro_</a></div>
+      <Credits />
     </div>
   )
 }
