@@ -18,10 +18,12 @@ const Collections = ({ id_collection }: CollectionProps) => {
     '/api/collection' + (id_collection ? `/${id_collection}` : ''),
     fetcher
   )
+  const title = id_collection ? 'Collection' : 'Collections'
 
   if (error) {
     return (
       <div className={styles.chips} aria-label="Collections unavailable">
+        <p className={styles.chips_title}>{title}</p>
         <span className={`${styles.chip} ${styles.chip_muted}`}>Collections unavailable</span>
       </div>
     )
@@ -30,6 +32,7 @@ const Collections = ({ id_collection }: CollectionProps) => {
   if (!data) {
     return (
       <div className={styles.chips} aria-label="Loading collections">
+        <p className={styles.chips_title}>{title}</p>
         <span className={`${styles.chip} ${styles.chip_skeleton}`} aria-hidden="true" />
         <span className={`${styles.chip} ${styles.chip_skeleton}`} aria-hidden="true" />
         <span className={`${styles.chip} ${styles.chip_skeleton} ${styles.chip_skeleton_sm}`} aria-hidden="true" />
@@ -39,9 +42,10 @@ const Collections = ({ id_collection }: CollectionProps) => {
 
   return (
     <div className={styles.chips}>
+      <p className={styles.chips_title}>{title}</p>
       {data.map(({ id, title, slug }) =>
         id_collection ? (
-          <span className={styles.chip} key={`collection_${slug}`}>
+          <span className={`${styles.chip} ${styles.chip_selected}`} key={`collection_${slug}`}>
             {title}
             <Link
               href="/"
