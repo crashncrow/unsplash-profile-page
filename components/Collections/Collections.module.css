@@ -17,6 +17,35 @@
     transform 120ms ease;
 }
 
+.chip_muted {
+  background: #ececec;
+  color: #666;
+  box-shadow: none;
+  cursor: default;
+}
+
+.chip_skeleton {
+  width: 128px;
+  height: 26px;
+  padding: 0;
+  margin: 0 5px 3px 0;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+  background-size: 220% 100%;
+  box-shadow: none;
+  animation: chipShimmer 1.15s ease-in-out infinite;
+}
+
+.chip_skeleton_sm {
+  width: 92px;
+}
+
 .chip:hover {
   background: #ccc;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
@@ -59,4 +88,19 @@
 .chip_remove:focus-visible {
   outline: 2px solid #333;
   outline-offset: 2px;
+}
+
+@keyframes chipShimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip_skeleton {
+    animation: none;
+  }
 }

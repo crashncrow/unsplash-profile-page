@@ -68,6 +68,38 @@
   font-weight: 700;
 }
 
+.stat_value_skeleton {
+  display: inline-block;
+  width: min(78px, 70%);
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.06) 0%,
+      rgba(0, 0, 0, 0.12) 50%,
+      rgba(0, 0, 0, 0.06) 100%
+    );
+  background-size: 220% 100%;
+  animation: statsShimmer 1.15s ease-in-out infinite;
+}
+
+@keyframes statsShimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat_value_skeleton {
+    animation: none;
+  }
+}
+
 @media (max-width: 480px) {
   .stats_container {
     padding: 0.75rem;

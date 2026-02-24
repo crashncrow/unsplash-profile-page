@@ -41,8 +41,19 @@ const EyeIcon = () => (
 
 const Stats = () => {
   const { data, error } = useSWR<StatsData>('/api/stats', fetcher)
+  const isLoading = !data && !error
 
-  if (error) return <div>failed to load</div>
+  const downloadsValue = error
+    ? 'N/A'
+    : data
+      ? compactNumber.format(data.downloads.total)
+      : null
+
+  const viewsValue = error
+    ? 'N/A'
+    : data
+      ? compactNumber.format(data.views.total)
+      : null
 
   return (
     <section className={styles.stats_container} aria-label="Unsplash stats">
@@ -57,7 +68,14 @@ const Stats = () => {
             Downloads
           </p>
           <p className={styles.stat_value}>
-            {data ? compactNumber.format(data.downloads.total) : '...'}
+            {isLoading ? (
+              <span
+                className={styles.stat_value_skeleton}
+                aria-hidden="true"
+              />
+            ) : (
+              downloadsValue
+            )}
           </p>
         </div>
 
@@ -69,7 +87,14 @@ const Stats = () => {
             Views
           </p>
           <p className={styles.stat_value}>
-            {data ? compactNumber.format(data.views.total) : '...'}
+            {isLoading ? (
+              <span
+                className={styles.stat_value_skeleton}
+                aria-hidden="true"
+              />
+            ) : (
+              viewsValue
+            )}
           </p>
         </div>
       </div>

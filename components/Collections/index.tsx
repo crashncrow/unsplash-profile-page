@@ -19,9 +19,23 @@ const Collections = ({ id_collection }: CollectionProps) => {
     fetcher
   )
 
-  if (error) return <div>failed to load</div>
+  if (error) {
+    return (
+      <div className={styles.chips} aria-label="Collections unavailable">
+        <span className={`${styles.chip} ${styles.chip_muted}`}>Collections unavailable</span>
+      </div>
+    )
+  }
 
-  if (!data) return <div>loading...</div>
+  if (!data) {
+    return (
+      <div className={styles.chips} aria-label="Loading collections">
+        <span className={`${styles.chip} ${styles.chip_skeleton}`} aria-hidden="true" />
+        <span className={`${styles.chip} ${styles.chip_skeleton}`} aria-hidden="true" />
+        <span className={`${styles.chip} ${styles.chip_skeleton} ${styles.chip_skeleton_sm}`} aria-hidden="true" />
+      </div>
+    )
+  }
 
   return (
     <div className={styles.chips}>
