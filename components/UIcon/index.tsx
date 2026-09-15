@@ -1,6 +1,11 @@
 import styles from './UIcon.module.css'
 
-const UIcon = ({ url, name }) => {
+interface UIconProps {
+  url: string
+  name: string
+}
+
+const UIcon = ({ url, name }: UIconProps) => {
   return (
     <a
       className={styles.icon}

@@ -4,7 +4,17 @@ import UIcon from 'components/UIcon'
 import * as React from 'react'
 import { BlurImg } from 'components/BlurImg'
 
-const Uimage = ({ id, urls, altDescription, blurHash, height, width, downloadSig }) => {
+interface UImageProps {
+  id: string
+  urls: { small: string }
+  altDescription?: string | null
+  blurHash?: string | null
+  height: number | string
+  width: number | string
+  downloadSig?: string
+}
+
+const Uimage = ({ id, urls, altDescription, blurHash, height, width, downloadSig }: UImageProps) => {
   return (
     <div className={styles.card}>
       <BlurImg

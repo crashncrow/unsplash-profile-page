@@ -1,7 +1,17 @@
 import styles from './Social.module.css'
 import UIcon from 'components/UIcon'
 
-const Social = ({ user }) => {
+interface SocialUser {
+  twitter_username?: string | null
+  instagram_username?: string | null
+  username?: string | null
+}
+
+interface SocialProps {
+  user: SocialUser
+}
+
+const Social = ({ user }: SocialProps) => {
   return (
     <div className={styles.social_container}>
       {user.twitter_username && (
