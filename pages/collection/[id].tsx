@@ -1,6 +1,5 @@
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
-import Layout, { siteTitle } from 'components/Layout'
+import Layout from 'components/Layout'
 import Gallery from 'components/Gallery'
 import Collections from 'components/Collections'
 import { useRouter } from 'next/router'
@@ -31,31 +30,36 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps( {params} ) {
-  const json = await unsplashJson(`/collections/${params.id}/photos`)
+  const [photosJson, userJson] = await Promise.all([
+    unsplashJson(`/collections/${params.id}/photos`),
+    unsplashJson(`/users/${getUnsplashUser()}`)
+  ])
 
-  const data = withDownloadSignatures(JSON.parse(JSON.stringify(json)))
+  const data = withDownloadSignatures(JSON.parse(JSON.stringify(photosJson)))
   const collectionSig = signId(params.id)
+  const ogImage = data?.[0]?.urls?.regular ?? null
+  const title = userJson?.name ? `${userJson.name} · Unsplash Profile` : null
+  const description = userJson?.bio ?? null
 
   return {
     props: {
       data,
-      collectionSig
+      collectionSig,
+      ogImage,
+      title,
+      description
     },
     revalidate: 86400
   }
 }
 
-const Collection = ({ data, collectionSig }) => {
+const Collection = ({ data, collectionSig, ogImage, title, description }) => {
   const router = useRouter()
   const collection_id = router.query.id
     ? parseInt(router.query.id.toString())
     : null
   return (
-    <Layout>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-
+    <Layout ogImage={ogImage} title={title} description={description}>
       <Collections id_collection={collection_id} sig={collectionSig} />
 
       <Gallery data={data} />
