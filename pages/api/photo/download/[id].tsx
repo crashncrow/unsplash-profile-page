@@ -1,10 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { sendApiError, trackUnsplashDownload, unsplashJson } from 'libs/unsplash'
+import { verifySignedId } from 'libs/sign'
 
 export default function download(req: NextApiRequest, res: NextApiResponse) {
   const {
-    query: { id },
+    query: { id, sig },
   } = req
+
+  if (!verifySignedId(id.toString(), sig)) {
+    return sendApiError(res, { status: 403, message: 'Invalid signature' })
+  }
 
   return new Promise<void>((resolve) => {
     unsplashJson(`/photos/${id.toString()}`)

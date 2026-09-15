@@ -15,14 +15,15 @@ const Gallery = ({ data }) => {
 
   return (
     <section className={styles.gallery_container}>
-      {photos.map(({ id, urls, alt_description, description, blur_hash, height, width }) => (
+      {photos.map(({ id, urls, alt_description, description, blur_hash, height, width, download_sig }) => (
         <UImage
           id={id}
-          height={height * 790 / width} 
-          width={"790"} 
+          height={height * 790 / width}
+          width={"790"}
           urls={urls}
           blurHash={blur_hash}
           altDescription={alt_description ? alt_description : description}
+          downloadSig={download_sig}
           key={`${id}_uimage_component`}
         />
       ))}

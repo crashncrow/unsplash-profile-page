@@ -4,13 +4,14 @@ import Gallery from 'components/Gallery'
 import Stats from 'components/Stats'
 import Collections from 'components/Collections'
 import { getUnsplashUser, unsplashJson } from 'libs/unsplash'
+import { withDownloadSignatures } from 'libs/sign'
 
 export async function getStaticProps() {
   const json = await unsplashJson(
     `/users/${getUnsplashUser()}/photos?page=1&per_page=50&order_by=latest`
   )
 
-  const data = JSON.parse(JSON.stringify(json))
+  const data = withDownloadSignatures(JSON.parse(JSON.stringify(json)))
 
   return {
     props: {
