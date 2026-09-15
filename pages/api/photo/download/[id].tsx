@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import { Readable } from 'stream'
 import { sendApiError, trackUnsplashDownload, unsplashJson } from 'libs/unsplash'
 import { verifySignedId } from 'libs/sign'
 
-export default function download(req: NextApiRequest, res: NextApiResponse) {
+export default async function download(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id, sig },
   } = req
@@ -11,30 +12,29 @@ export default function download(req: NextApiRequest, res: NextApiResponse) {
     return sendApiError(res, { status: 403, message: 'Invalid signature' })
   }
 
-  return new Promise<void>((resolve) => {
-    unsplashJson(`/photos/${id.toString()}`)
-      .then((json) => {
-        trackUnsplashDownload(json?.links?.download_location)
+  try {
+    const json = await unsplashJson(`/photos/${id.toString()}`)
+    trackUnsplashDownload(json?.links?.download_location)
 
-        const filePath = json.links.download
-        const fileName = id + '.jpg'
+    const imageRes = await fetch(json.links.download)
 
-        res.setHeader('content-disposition', 'attachment; filename=' + fileName)
+    if (!imageRes.ok || !imageRes.body) {
+      throw Object.assign(new Error('Failed to fetch image'), { status: imageRes.status || 502 })
+    }
 
-        fetch(filePath)
-          .then(async (r) => Buffer.from(await r.arrayBuffer()))
-          .then((buff) => {
-            res.end(buff)
-            resolve()
-          })
-          .catch((error) => {
-            sendApiError(res, error)
-            resolve()
-          })
-      })
-      .catch((error) => {
-        sendApiError(res, error)
-        resolve()
-      })
-  })
+    res.setHeader('content-disposition', `attachment; filename=${id}.jpg`)
+
+    await new Promise<void>((resolve, reject) => {
+      const stream = Readable.fromWeb(imageRes.body as any)
+      stream.on('error', reject)
+      res.on('finish', resolve)
+      stream.pipe(res)
+    })
+  } catch (error) {
+    if (res.headersSent) {
+      res.end()
+      return
+    }
+    sendApiError(res, error)
+  }
 }
