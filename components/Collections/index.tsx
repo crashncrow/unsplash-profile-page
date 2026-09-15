@@ -5,6 +5,7 @@ import styles from './Collections.module.css'
 
 interface CollectionProps {
   id_collection?: number
+  sig?: string
 }
 
 interface CollectionItem {
@@ -13,9 +14,11 @@ interface CollectionItem {
   slug: string
 }
 
-const Collections = ({ id_collection }: CollectionProps) => {
+const Collections = ({ id_collection, sig }: CollectionProps) => {
   const { data, error } = useSWR<CollectionItem[]>(
-    '/api/collection' + (id_collection ? `/${id_collection}` : ''),
+    id_collection
+      ? `/api/collection/${id_collection}?sig=${sig}`
+      : '/api/collection',
     fetcher
   )
   const title = id_collection ? 'Collection' : 'Collections'

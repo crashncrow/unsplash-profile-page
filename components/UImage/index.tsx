@@ -4,7 +4,7 @@ import UIcon from 'components/UIcon'
 import * as React from 'react'
 import { BlurImg } from 'components/BlurImg'
 
-const Uimage = ({ id, urls, altDescription, blurHash, height, width }) => {
+const Uimage = ({ id, urls, altDescription, blurHash, height, width, downloadSig }) => {
   return (
     <div className={styles.card}>
       <BlurImg
@@ -12,12 +12,12 @@ const Uimage = ({ id, urls, altDescription, blurHash, height, width }) => {
           blurhash={blurHash}
           width={width}
           height={height}
-          className={styles.img} 
-          src={urls.small} 
+          className={styles.img}
+          src={urls.small}
           alt={altDescription || ''}
         />
       <div className={styles.actions}>
-        <UIcon url={`/api/photo/download/${id}`} name="download" />
+        <UIcon url={`/api/photo/download/${id}?sig=${downloadSig}`} name="download" />
       </div>
     </div>
   )
