@@ -5,14 +5,14 @@ import { useInView } from "react-intersection-observer";
 type Props = React.DetailedHTMLProps<
   React.ImgHTMLAttributes<HTMLImageElement>,
   HTMLImageElement
-> & { blurhash?: string | null };
+> & { blurhash?: string | null; alt: string };
 
 // Uses browser-native `loading="lazy"` to lazy load images
 // Renders a blurhash value to a blob when it about to appear on screen.
 // Only renders the blurhash when the image hasn't loaded yet.
 // Removes the blob once the image has finished loading.
 export function BlurImg(allProps: Props) {
-  const { loading = "lazy", blurhash, style, onLoad, ...props } = allProps;
+  const { loading = "lazy", blurhash, style, onLoad, alt, ...props } = allProps;
   
   const [imgLoaded, setImgLoaded] = useState(false);
   const { ref, inView } = useInView({ rootMargin: "110%" });
@@ -38,6 +38,7 @@ export function BlurImg(allProps: Props) {
     <img
       ref={ref}
       {...props}
+      alt={alt}
       loading={loading}
       decoding="async"
       onLoad={handleOnLoad}

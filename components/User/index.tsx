@@ -7,6 +7,9 @@ import Social from 'components/Social'
 interface UserData {
   name: string
   bio?: string
+  username?: string
+  twitter_username?: string | null
+  instagram_username?: string | null
   profile_image: {
     large: string
   }
