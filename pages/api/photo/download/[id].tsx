@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { trackUnsplashDownload, unsplashJson } from 'libs/unsplash'
+import { sendApiError, trackUnsplashDownload, unsplashJson } from 'libs/unsplash'
 
 export default function download(req: NextApiRequest, res: NextApiResponse) {
   const {
@@ -23,14 +23,12 @@ export default function download(req: NextApiRequest, res: NextApiResponse) {
             resolve()
           })
           .catch((error) => {
-            res.json(error)
-            res.status(405).end()
+            sendApiError(res, error)
             resolve()
           })
       })
       .catch((error) => {
-        res.json(error)
-        res.status(405).end()
+        sendApiError(res, error)
         resolve()
       })
   })

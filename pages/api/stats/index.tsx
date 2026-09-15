@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getUnsplashUser, sendCachedJson, unsplashJson } from 'libs/unsplash'
+import { getUnsplashUser, sendApiError, sendCachedJson, unsplashJson } from 'libs/unsplash'
 
 export default async function getStats(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -8,6 +8,6 @@ export default async function getStats(req: NextApiRequest, res: NextApiResponse
     )
     sendCachedJson(res, json)
   } catch (error) {
-    res.status(405).json(error)
+    sendApiError(res, error)
   }
 }

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sendCachedJson, unsplashJson } from 'libs/unsplash'
+import { sendApiError, sendCachedJson, unsplashJson } from 'libs/unsplash'
 
 export default function getCollectionPhotos(
   req: NextApiRequest,
@@ -11,5 +11,5 @@ export default function getCollectionPhotos(
 
   return unsplashJson(`/collections/${id.toString()}/photos`)
     .then((json) => sendCachedJson(res, json))
-    .catch((error) => res.status(405).json(error))
+    .catch((error) => sendApiError(res, error))
 }

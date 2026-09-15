@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sendCachedJson, unsplashJson } from 'libs/unsplash'
+import { sendApiError, sendCachedJson, unsplashJson } from 'libs/unsplash'
 
 export default async function getCollection(
   req: NextApiRequest,
@@ -13,6 +13,6 @@ export default async function getCollection(
     const json = await unsplashJson(`/collections/${id.toString()}`)
     sendCachedJson(res, [json])
   } catch (error) {
-    res.status(405).json(error)
+    sendApiError(res, error)
   }
 }
