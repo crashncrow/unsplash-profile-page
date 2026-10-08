@@ -1,6 +1,8 @@
 import useSWR from 'swr'
 import fetcher from 'libs/fetcher'
-import styles from './Stats.module.css'
+import { Download, Eye } from 'lucide-react'
+import { Card } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface StatsData {
   downloads: { total: number }
@@ -12,32 +14,14 @@ const compactNumber = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 1,
 })
 
-const DownloadIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path
-      d="M12 3v10m0 0 4-4m-4 4-4-4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-const EyeIcon = () => (
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path
-      d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <circle cx="12" cy="12" r="2.8" fill="none" stroke="currentColor" strokeWidth="1.8" />
-  </svg>
-)
+const titleClass =
+  'text-xs leading-none font-bold tracking-[0.12em] text-muted-foreground uppercase'
+const statCardClass = 'items-center gap-1 rounded-lg px-2 py-2.5 shadow-none'
+const labelClass =
+  'inline-flex items-center justify-center gap-1 text-[0.7rem] leading-tight tracking-[0.08em] text-muted-foreground uppercase'
+const valueClass =
+  'flex min-h-6 items-center justify-center text-[1.35rem] leading-none font-bold max-[480px]:text-[1.15rem]'
+const valueSkeletonClass = 'h-5 w-[78px] max-w-[70%] rounded-full'
 
 const Stats = () => {
   const { data, error } = useSWR<StatsData>('/api/stats', fetcher)
@@ -56,48 +40,32 @@ const Stats = () => {
       : null
 
   return (
-    <section className={styles.stats_container} aria-label="Unsplash stats">
-      <p className={styles.stats_title}>Profile Stats</p>
+    <section className="mx-auto mt-2 mb-3 max-w-[680px]" aria-label="Unsplash stats">
+      <Card className="gap-2.5 bg-muted/40 px-3.5 py-3 text-center shadow-none max-[480px]:p-3">
+        <p className={titleClass}>Profile Stats</p>
 
-      <div className={styles.stats_grid}>
-        <div className={styles.stat_card}>
-          <p className={styles.stat_label}>
-            <span className={styles.stat_icon}>
-              <DownloadIcon />
-            </span>
-            Downloads
-          </p>
-          <p className={styles.stat_value}>
-            {isLoading ? (
-              <span
-                className={styles.stat_value_skeleton}
-                aria-hidden="true"
-              />
-            ) : (
-              downloadsValue
-            )}
-          </p>
-        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <Card className={statCardClass}>
+            <p className={labelClass}>
+              <Download className="size-3.5" aria-hidden="true" />
+              Downloads
+            </p>
+            <div className={valueClass}>
+              {isLoading ? <Skeleton className={valueSkeletonClass} aria-hidden="true" /> : downloadsValue}
+            </div>
+          </Card>
 
-        <div className={styles.stat_card}>
-          <p className={styles.stat_label}>
-            <span className={styles.stat_icon}>
-              <EyeIcon />
-            </span>
-            Views
-          </p>
-          <p className={styles.stat_value}>
-            {isLoading ? (
-              <span
-                className={styles.stat_value_skeleton}
-                aria-hidden="true"
-              />
-            ) : (
-              viewsValue
-            )}
-          </p>
+          <Card className={statCardClass}>
+            <p className={labelClass}>
+              <Eye className="size-3.5" aria-hidden="true" />
+              Views
+            </p>
+            <div className={valueClass}>
+              {isLoading ? <Skeleton className={valueSkeletonClass} aria-hidden="true" /> : viewsValue}
+            </div>
+          </Card>
         </div>
-      </div>
+      </Card>
     </section>
   )
 }

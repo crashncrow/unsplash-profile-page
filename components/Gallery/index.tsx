@@ -1,4 +1,3 @@
-import styles from './Gallery.module.css'
 import UImage from 'components/UImage'
 
 interface Photo {
@@ -27,7 +26,7 @@ const Gallery = ({ data }: GalleryProps) => {
   const photos = normalizePhotos(data)
 
   return (
-    <section className={styles.gallery_container}>
+    <section className="mt-2 columns-3 gap-4 max-[990px]:columns-2 max-[990px]:gap-3.5 max-[790px]:columns-1 max-[790px]:gap-3">
       {photos.map(({ id, urls, alt_description, description, blur_hash, height, width, download_sig }) => (
         <UImage
           id={id}

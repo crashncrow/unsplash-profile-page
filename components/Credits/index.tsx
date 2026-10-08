@@ -1,27 +1,30 @@
-import styles from './Credits.module.css'
+import { GithubIcon } from 'components/Icons'
 
 const Credits = () => {
   return (
-    <div className={styles.credits}>
-      <div className={styles.creditsPrimary}>
+    <div className="flex flex-col items-center justify-center gap-2 pt-12 text-center max-[480px]:gap-1.5">
+      <div>
         Made with &hearts; by{' '}
-        <a href='https://x.com/_nnaro_' target='_blank' rel='noopener noreferrer'>
-          @_nnaro_
+        <a
+          className="font-medium"
+          href='https://nnaro.dev?utm_source=unsplash-profile-page'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          nnaro.dev
         </a>
       </div>
 
-      <div className={styles.creditsSecondary}>
+      <div className="flex w-full justify-center text-sm text-muted-foreground">
         <a
-          className={styles.repoLink}
+          className="inline-flex max-w-full items-center justify-center gap-1.5 whitespace-nowrap transition-colors hover:text-foreground"
           href='https://github.com/crashncrow/unsplash-profile-page'
           target='_blank'
           rel='noopener noreferrer'
           aria-label='View source on GitHub'
         >
-          <span className={styles.repoLinkIcon} aria-hidden='true'>
-            <img src='/images/github.svg' alt='' width={16} height={16} decoding='async' />
-          </span>
-          <span className={styles.repoLinkText}>View source on GitHub</span>
+          <GithubIcon className="size-4 shrink-0" />
+          <span>View source on GitHub</span>
         </a>
       </div>
     </div>

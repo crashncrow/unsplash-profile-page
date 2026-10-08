@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 import fetcher from 'libs/fetcher'
 import Link from 'next/link'
-import styles from './User.module.css'
 import Social from 'components/Social'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface UserData {
   name: string
@@ -19,53 +19,55 @@ const User = () => {
   const { data, error } = useSWR<UserData>('/api/user', fetcher)
 
   return (
-    <header className={styles.header}>
+    <header className="flex flex-col items-center">
       <Link href="/">
         {data ? (
           <img
             src={data.profile_image.large}
-            className={`${styles.headerImage} ${styles.borderCircle}`}
+            className="size-24 rounded-full"
             alt={data.name}
             width={96}
             height={96}
             decoding="async"
           />
         ) : (
-          <span
-            className={`${styles.headerImage} ${styles.borderCircle} ${styles.avatarSkeleton}`}
-            aria-hidden="true"
-          />
+          <Skeleton className="size-24 rounded-full" aria-hidden="true" />
         )}
       </Link>
-      <h2 className={styles.headingLg}>
-        <Link href="/">
-          {data ? (
-            data.name
-          ) : (
-            <span className={styles.nameSkeleton} aria-hidden="true" />
-          )}
-        </Link>
-      </h2>
+      <div className="my-4 flex min-h-[2.1rem] items-center">
+        {data ? (
+          <h2 className="text-2xl leading-[1.4] font-bold">
+            <Link href="/" className="hover:underline">
+              {data.name}
+            </Link>
+          </h2>
+        ) : (
+          <Skeleton className="h-5 w-[12ch] max-w-[70vw] rounded-full" aria-hidden="true" />
+        )}
+      </div>
 
       {data ? (
         <Social user={data} />
       ) : (
-        <div className={styles.socialSkeletonRow} aria-hidden="true">
-          <span className={styles.socialSkeleton} />
-          <span className={styles.socialSkeleton} />
-          <span className={styles.socialSkeleton} />
+        <div
+          className="mt-1 mb-2 flex min-h-[60px] items-center justify-center gap-2"
+          aria-hidden="true"
+        >
+          <Skeleton className="size-7 rounded-full" />
+          <Skeleton className="size-7 rounded-full" />
+          <Skeleton className="size-7 rounded-full" />
         </div>
       )}
 
-      <p className={styles.bio}>
+      <div className="flex min-h-[1.6em] items-center justify-center text-center">
         {error ? (
-          'Profile unavailable'
+          <p>Profile unavailable</p>
         ) : data ? (
-          data.bio || ''
+          <p>{data.bio || ''}</p>
         ) : (
-          <span className={styles.bioSkeleton} aria-hidden="true" />
+          <Skeleton className="h-4 w-[min(42ch,78vw)] rounded-full" aria-hidden="true" />
         )}
-      </p>
+      </div>
     </header>
   )
 }
