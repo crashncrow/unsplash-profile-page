@@ -5,7 +5,7 @@ import Collections from 'components/Collections'
 import { useRouter } from 'next/router'
 import slug from 'libs/slug'
 import { getUnsplashUser, unsplashJson } from 'libs/unsplash'
-import { signId, withDownloadSignatures } from 'libs/sign'
+import { withDownloadSignatures } from 'libs/sign'
 
 // This function gets called at build time
 export async function getStaticPaths() {
@@ -36,7 +36,6 @@ export async function getStaticProps( {params} ) {
   ])
 
   const data = withDownloadSignatures(JSON.parse(JSON.stringify(photosJson)))
-  const collectionSig = signId(params.id)
   const ogImage = data?.[0]?.urls?.regular ?? null
   const title = userJson?.name ? `${userJson.name} · Unsplash Profile` : null
   const description = userJson?.bio ?? null
@@ -44,7 +43,6 @@ export async function getStaticProps( {params} ) {
   return {
     props: {
       data,
-      collectionSig,
       ogImage,
       title,
       description
@@ -53,14 +51,14 @@ export async function getStaticProps( {params} ) {
   }
 }
 
-const Collection = ({ data, collectionSig, ogImage, title, description }) => {
+const Collection = ({ data, ogImage, title, description }) => {
   const router = useRouter()
   const collection_id = router.query.id
     ? parseInt(router.query.id.toString())
     : null
   return (
     <Layout ogImage={ogImage} title={title} description={description}>
-      <Collections id_collection={collection_id} sig={collectionSig} />
+      <Collections id_collection={collection_id} />
 
       <Gallery data={data} />
     </Layout>

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
 import Head from 'next/head'
 import User from 'components/User'
+import Stats from 'components/Stats'
 import Credits from 'components/Credits'
-
-import styles from './layout.module.css'
+import ThemeToggle from 'components/ThemeToggle'
 
 export const siteTitle = 'Unsplash Profile with Nextjs'
 
@@ -19,7 +19,7 @@ const Layout = ({ children, title, description, ogImage }: LayoutProps) => {
   const pageDescription = description || siteTitle
 
   return (
-    <div className={styles.container}>
+    <div className="relative mx-auto mt-12 mb-24 max-w-[1080px] px-4 max-[790px]:mt-6 max-[790px]:mb-12 max-[790px]:px-3.5">
       <Head>
         <title>{pageTitle}</title>
         <link rel='icon' href='/favicon.ico' />
@@ -32,7 +32,11 @@ const Layout = ({ children, title, description, ogImage }: LayoutProps) => {
         <meta name='robots' content='noindex' />
       </Head>
 
+      <ThemeToggle className="absolute top-0 right-4 max-[790px]:right-3.5" />
+
       <User />
+
+      <Stats />
 
       <main>{children}</main>
 

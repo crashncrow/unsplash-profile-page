@@ -1,6 +1,5 @@
 import Layout from 'components/Layout'
 import Gallery from 'components/Gallery'
-import Stats from 'components/Stats'
 import Collections from 'components/Collections'
 import { getUnsplashUser, unsplashJson } from 'libs/unsplash'
 import { withDownloadSignatures } from 'libs/sign'
@@ -30,8 +29,6 @@ export async function getStaticProps() {
 const Home = ({ data, ogImage, title, description }) => {
   return (
     <Layout ogImage={ogImage} title={title} description={description}>
-      <Stats />
-
       <Collections />
 
       <Gallery data={data}/>
