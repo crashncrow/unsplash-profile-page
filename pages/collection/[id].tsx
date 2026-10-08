@@ -4,6 +4,7 @@ import Gallery from 'components/Gallery'
 import Collections from 'components/Collections'
 import { useRouter } from 'next/router'
 import slug from 'libs/slug'
+import ogImageUrl from 'libs/og'
 import { getUnsplashUser, unsplashJson } from 'libs/unsplash'
 import { withDownloadSignatures } from 'libs/sign'
 
@@ -36,7 +37,7 @@ export async function getStaticProps( {params} ) {
   ])
 
   const data = withDownloadSignatures(JSON.parse(JSON.stringify(photosJson)))
-  const ogImage = data?.[0]?.urls?.regular ?? null
+  const ogImage = ogImageUrl(data?.[0]?.urls?.regular)
   const title = userJson?.name ? `${userJson.name} · Unsplash Profile` : null
   const description = userJson?.bio ?? null
 
