@@ -10,6 +10,7 @@ interface UserData {
   username?: string
   twitter_username?: string | null
   instagram_username?: string | null
+  portfolio_url?: string | null
   profile_image: {
     large: string
   }

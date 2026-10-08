@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { InstagramIcon, UnsplashIcon, XIcon } from 'components/Icons'
 
@@ -6,6 +7,7 @@ interface SocialUser {
   twitter_username?: string | null
   instagram_username?: string | null
   username?: string | null
+  portfolio_url?: string | null
 }
 
 interface SocialProps {
@@ -25,6 +27,10 @@ const SocialLink = ({ url, name, children }: SocialLinkProps) => (
     </a>
   </Button>
 )
+
+// portfolio_url is free text on Unsplash, so only link to real web URLs
+const isWebUrl = (url?: string | null): url is string =>
+  !!url && /^https?:\/\//i.test(url)
 
 const Social = ({ user }: SocialProps) => {
   return (
@@ -48,6 +54,11 @@ const Social = ({ user }: SocialProps) => {
           name="unsplash"
         >
           <UnsplashIcon />
+        </SocialLink>
+      )}
+      {isWebUrl(user.portfolio_url) && (
+        <SocialLink url={user.portfolio_url} name="website">
+          <Globe />
         </SocialLink>
       )}
     </div>
